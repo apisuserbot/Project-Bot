@@ -81,7 +81,7 @@ def handle(update):
 
 		if text == "/start":
 			if not uid in queue["occupied"]:
-				bot.sendMessage(uid, 'Looking for a stranger to match you with... Hold on!')
+				bot.sendMessage(uid, 'Mencari pasangan halu kamu.. tunggu sebentar')
 				print("[SB] " + str(uid) + " joined the queue")
 				queue["free"].append(uid)
 
