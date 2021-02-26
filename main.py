@@ -71,11 +71,11 @@ def handle(update):
 
 		if text == "/end" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' left the conversation with ' + str(queue["occupied"][uid]))
-			bot.sendMessage(uid, "Your conversation is over, I hope you enjoyed it :)")
-			bot.sendMessage(uid, "Type /start to get matched with a new partner")
-			bot.sendMessage(uid, "We're ending the conversation...")
-			bot.sendMessage(queue["occupied"][uid], "Your conversation is over, I hope you enjoyed it :)")
-			bot.sendMessage(queue["occupied"][uid], "Your conversation partner left the chat")
+			bot.sendMessage(uid, "Kamu Mengakhiri Obrolan:)")
+			bot.sendMessage(uid, "Tekan /start Untuk Mencari pasangan Baru")
+			bot.sendMessage(uid, "Yuk Halu Lagi")
+			bot.sendMessage(queue["occupied"][uid], "Obrolan Telah Berakhir")
+			bot.sendMessage(queue["occupied"][uid], "Yah Pasangan Halu Kamu mengakhiri obrolan, Jangan Sedih ya:)")
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
