@@ -62,7 +62,7 @@ def handle(update):
 			if 'video' in update:
 				video = update['video']['file_id']
 				bot.sendVideo(queue["occupied"][uid], video)
-				bot.sendMessage(queue["occupied"][uid], "Stranger sends you a video!")
+				bot.sendMessage(queue["occupied"][uid], "Sihalu mengirim kamu video")
 
 			if 'sticker' in update:
 				sticker = update['sticker']['file_id']
