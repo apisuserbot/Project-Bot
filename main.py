@@ -76,6 +76,7 @@ def handle(update):
 			bot.sendMessage(uid, "Yuk Halu Lagi")
 			bot.sendMessage(queue["occupied"][uid], "Obrolan Telah Berakhir")
 			bot.sendMessage(queue["occupied"][uid], "Yah Pasangan Halu Kamu mengakhiri obrolan, Jangan Sedih ya:)")
+			bot.sendMessage(queue["occupied"][uid], "Tekan /start untuk menemukan pasangan baru")
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
