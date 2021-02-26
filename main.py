@@ -48,13 +48,13 @@ def handle(update):
 		if uid in queue["occupied"]:
 			if 'text' in update:
 				if text != "/end":
-					bot.sendMessage(queue["occupied"][uid], "Stranger: " + text)
+					bot.sendMessage(queue["occupied"][uid], "Sihalu: " + text)
 			
 			if 'photo' in update:
 				if config[str(queue["occupied"][uid])]["pics"]:
 					photo = update['photo'][0]['file_id']
 					bot.sendPhoto(queue["occupied"][uid], photo)
-					bot.sendMessage(queue["occupied"][uid], "Stranger sends you a photo!")
+					bot.sendMessage(queue["occupied"][uid], "sihalu mengirim kamu foto")
 				else:
 					bot.sendMessage(queue["occupied"][uid], "Stranger tried to send you a photo, but you disabled this,  you can enable photos by using the /nopics command")
 					bot.sendMessage(uid, "Stranger disabled photos, and will not receive your photos")
@@ -67,7 +67,7 @@ def handle(update):
 			if 'sticker' in update:
 				sticker = update['sticker']['file_id']
 				bot.sendDocument(queue["occupied"][uid], sticker)
-				bot.sendMessage(queue["occupied"][uid], "Stranger sends you a sticker!")
+				bot.sendMessage(queue["occupied"][uid], "Sihalu Mengirim stiker")
 
 		if text == "/end" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' left the conversation with ' + str(queue["occupied"][uid]))
@@ -91,9 +91,9 @@ def handle(update):
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
 			if config[str(uid)]["pics"]:
-				bot.sendMessage(uid, "Strangers can now send you photos!")
+				bot.sendMessage(uid, "Sihalu Mengirim Foto")
 			else:
-				bot.sendMessage(uid, "Strangers won't be able to send you photos anymore!")
+				bot.sendMessage(uid, "Sihalu Tidak Bisa Mengirim Fhoto")
 			saveConfig(config)
 
 		if len(queue["free"]) > 1 and not uid in queue["occupied"]:
