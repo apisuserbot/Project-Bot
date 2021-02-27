@@ -48,13 +48,12 @@ def handle(update):
 		if uid in queue["occupied"]:
 			if 'text' in update:
 				if text != "/end":
-					bot.sendMessage(queue["occupied"][uid], "Sihalu: " + text)
+					bot.sendMessage(queue["occupied"][uid], "SIHALU: " + text)
 			
 			if 'photo' in update:
 				if config[str(queue["occupied"][uid])]["pics"]:
 					photo = update['photo'][0]['file_id']
 					bot.sendPhoto(queue["occupied"][uid], photo)
-					bot.sendMessage(queue["occupied"][uid], "sihalu mengirim kamu foto")
 				else:
 					bot.sendMessage(queue["occupied"][uid], "Stranger tried to send you a photo, but you disabled this,  you can enable photos by using the /nopics command")
 					bot.sendMessage(uid, "Stranger disabled photos, and will not receive your photos")
@@ -62,12 +61,14 @@ def handle(update):
 			if 'video' in update:
 				video = update['video']['file_id']
 				bot.sendVideo(queue["occupied"][uid], video)
-				bot.sendMessage(queue["occupied"][uid], "Sihalu mengirim kamu video")
+				
+			if 'voice' in update:
+				voice = update['voice']['file_id']
+				bot.sendVoice(queue["occupied"][uid], voice)
 
 			if 'sticker' in update:
 				sticker = update['sticker']['file_id']
 				bot.sendDocument(queue["occupied"][uid], sticker)
-				bot.sendMessage(queue["occupied"][uid], "Sihalu Mengirim stiker")
 
 		if text == "/end" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
