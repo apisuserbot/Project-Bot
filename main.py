@@ -83,7 +83,7 @@ def handle(update):
 		if text == "/start":
 			if not uid in queue["occupied"]:
 				bot.sendMessage(uid, 'Mencari pasangan halu kamu.. tunggu sebentar')
-				print("[SB] " + str(uid) + " joined the queue")
+				print("[SB] " + str(uid) + " Join ke obrolan")
 				queue["free"].append(uid)
 				
 		if text == "/next" and uid in queue["occupied"]: 
@@ -97,13 +97,16 @@ def handle(update):
 			del queue["occupied"][uid] 
 			if not uid in queue["occupied"]: 
 				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar')
-				print("[SB] " + str(uid) + " joined the queue") 
+				print("[SB] " + str(uid) + " Join ke obrolan") 
 				queue["free"].append(uid)		
 		
 
 		if text == "/help":
-			bot.sendMessage(uid, "Help:\n\nGunakan /start untuk mencari pasangan kamu,Jika ingin mencari pasangan baru tekan /next , dan jika ingin mengakhiri obrolan tekan /end .\n\n Jangan Lupa join grup @caritemanh")
-
+			bot.sendMessage(uid, "Help:\n\nGunakan /start untuk mencari pasangan kamu,Jika ingin mencari pasangan baru tekan /next , dan jika ingin mengakhiri obrolan tekan /end .\n\n Jangan Lupa join grup @caritemanh ")
+		
+		if text == "/donasi":
+			bot.sendMessage(uid, "Yuk bantu bot ini dengan cara SUBSCRIBE \n\nLINK : https://youtu.be/5H-N0nw0s_A ")
+		
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
 			if config[str(uid)]["pics"]:
