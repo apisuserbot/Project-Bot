@@ -48,7 +48,7 @@ def handle(update):
 		if uid in queue["occupied"]:
 			if 'text' in update:
 				if text != "/end":
-					bot.sendMessage(queue["occupied"][uid], "SIHALU: " + text)
+					bot.sendMessage(queue["occupied"][uid], "SiHalu: " + text)
 			
 			if 'photo' in update:
 				if config[str(queue["occupied"][uid])]["pics"]:
