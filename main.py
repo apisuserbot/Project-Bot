@@ -48,7 +48,7 @@ def handle(update):
 		if uid in queue["occupied"]:
 			if 'text' in update:
 				if text != "/end":
-					bot.sendMessage(queue["occupied"][uid], "SiHalu: " + text)
+					bot.sendMessage(queue["occupied"][uid], "" + text)
 			
 			if 'photo' in update:
 				if config[str(queue["occupied"][uid])]["pics"]:
@@ -74,7 +74,6 @@ def handle(update):
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
 			bot.sendMessage(uid, "Kamu Mengakhiri Obrolan:)")
 			bot.sendMessage(uid, "Tekan /start Untuk Mencari pasangan Baru")
-			bot.sendMessage(uid, "Yuk Halu Lagi")
 			bot.sendMessage(queue["occupied"][uid], "Obrolan Telah Berakhir")
 			bot.sendMessage(queue["occupied"][uid], "Yah Pasangan Halu Kamu mengakhiri obrolan, Jangan Sedih ya:)")
 			bot.sendMessage(queue["occupied"][uid], "Tekan /start untuk menemukan pasangan baru")
@@ -105,15 +104,15 @@ def handle(update):
 		if text == "/help":
 			bot.sendMessage(uid, "Help:\n\nGunakan /start untuk mencari pasangan kamu,Jika ingin mencari pasangan baru tekan /next , dan jika ingin mengakhiri obrolan tekan /end .\n\n Jangan Lupa join grup @caritemanh ")
 		
-		if text == "/donasi":
+		if text == "/support":
 			bot.sendMessage(uid, "Yuk bantu bot ini dengan cara SUBSCRIBE \n\nLINK : https://youtu.be/5H-N0nw0s_A ")
 		
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
 			if config[str(uid)]["pics"]:
-				bot.sendMessage(uid, "Sihalu Mengirim Foto")
+				bot.sendMessage(uid, "Pasangan Mengirim Foto")
 			else:
-				bot.sendMessage(uid, "Sihalu Tidak Bisa Mengirim Fhoto")
+				bot.sendMessage(uid, "Pasangan Tidak Bisa Mengirim Fhoto")
 			saveConfig(config)
 
 		if len(queue["free"]) > 1 and not uid in queue["occupied"]:
@@ -123,8 +122,8 @@ def handle(update):
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
-				bot.sendMessage(uid, 'Pasangan kamu telah ditemukan, selamat halu wkwk')
-				bot.sendMessage(partner, 'Pasangan kamu telah ditemukan, selamat halu wkwk')
+				bot.sendMessage(uid, 'Pasangan kamu telah ditemukan, selamat halu wkwk😜')
+				bot.sendMessage(partner, 'Pasangan kamu telah ditemukan, selamat halu wkwk😜')
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
 
