@@ -94,7 +94,8 @@ def handle(update):
 			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan")
 			bot.sendMessage(queue["occupied"][uid], "tekan /start untuk menemukan pasangan baru")
 			del queue["occupied"][queue["occupied"][uid]]
-			del queue["occupied"][uid] if not uid in queue["occupied"]: 
+			del queue["occupied"][uid] 
+			if not uid in queue["occupied"]: 
 				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar')
 				print("[SB] " + str(uid) + " joined the queue") 
 				queue["free"].append(uid)		
