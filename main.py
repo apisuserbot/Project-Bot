@@ -17,7 +17,7 @@ def saveConfig(data):
 
 if __name__ == '__main__':
 	s = time.time()
-	print('[#] Swirlbot 2\n[i] Created by TheFamilyTeam - @TheFamilyTeam\n')
+	print('[#] Swirlbot 2\n[i] Created by Davi ALFajr\n')
 	print('[#] Checking config...')
 	if not os.path.isfile('config.json'):
 		print('[#] Creating config file...')
@@ -70,7 +70,7 @@ def handle(update):
 				bot.sendMessage(queue["occupied"][uid], "Sihalu Mengirim stiker")
 
 		if text == "/end" and uid in queue["occupied"]:
-			print('[SB] ' + str(uid) + ' left the conversation with ' + str(queue["occupied"][uid]))
+			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
 			bot.sendMessage(uid, "Kamu Mengakhiri Obrolan:)")
 			bot.sendMessage(uid, "Tekan /start Untuk Mencari pasangan Baru")
 			bot.sendMessage(uid, "Yuk Halu Lagi")
@@ -118,7 +118,7 @@ def handle(update):
 		if len(queue["free"]) > 1 and not uid in queue["occupied"]:
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
-				print('[SB] ' + str(uid) + ' matched with ' + str(partner))
+				print('[SB] ' + str(uid) + ' Berjodoh dengan ' + str(partner))
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
