@@ -85,9 +85,23 @@ def handle(update):
 				bot.sendMessage(uid, 'Mencari pasangan halu kamu.. tunggu sebentar')
 				print("[SB] " + str(uid) + " joined the queue")
 				queue["free"].append(uid)
+				
+		if text == "/next" and uid in queue["occupied"]: 
+			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
+			bot.sendMessage(uid, "Mengakhiri obrolan...")
+			bot.sendMessage(uid, "Obrolan telah berakhir")
+			bot.sendMessage(queue["occupied"][uid], "Obrolan telah berakhir")
+			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan")
+			bot.sendMessage(queue["occupied"][uid], "tekan /start untuk menemukan pasangan baru")
+			del queue["occupied"][queue["occupied"][uid]]
+			del queue["occupied"][uid] if not uid in queue["occupied"]: 
+				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar')
+				print("[SB] " + str(uid) + " joined the queue") 
+				queue["free"].append(uid)		
+		
 
 		if text == "/help":
-			bot.sendMessage(uid, "Help:\n\nUse /start to start looking for a conversational partner, once you're matched you can use /end to end the conversation.\n\nIf you have any questions or require help, join @TFChat or ask @borzetta.\n@TheFamilyTeam")
+			bot.sendMessage(uid, "Help:\n\nGunakan /start untuk mencari pasangan kamu,Jika ingin mencari pasangan baru tekan /next , dan jika ingin mengakhiri obrolan tekan /end .\n\n Jangan Lupa join grup @caritemanh")
 
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
