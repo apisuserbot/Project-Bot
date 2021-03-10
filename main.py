@@ -1,11 +1,11 @@
-import telepot
+import amanobot
 import random
 import time
 import os
 import json
 
 token = "1626343681:AAGLoexvHzVkmXBbzKQhXoEuTLuNw21fHiU"
-bot = telepot.Bot(token)
+bot = amanobot.Bot(token)
 
 queue = {
 	"free":[],
