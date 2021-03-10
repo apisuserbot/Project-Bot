@@ -1,5 +1,5 @@
-# SwirlBot
-Strangerbot-like bot created in Python
+YUK!!
+Jangan lupa bergabung ke grup t.me/caritemanh
 
 # Dependencies
-telepot
+Bot menggunakan library amanobot
