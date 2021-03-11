@@ -73,6 +73,7 @@ def handle(update):
 		if text == "/end" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
 			bot.sendMessage(uid, "Kamu Mengakhiri Obrolan:)")
+			bot.sendMessage(uid, "Jangan Lupa join grup @caritemanh")
 			bot.sendMessage(uid, "Tekan /start Untuk Mencari pasangan Baru")
 			bot.sendMessage(queue["occupied"][uid], "Obrolan Telah Berakhir")
 			bot.sendMessage(queue["occupied"][uid], "Yah Pasangan Halu Kamu mengakhiri obrolan, Jangan Sedih ya:)")
