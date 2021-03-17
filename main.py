@@ -110,7 +110,7 @@ def handle(update):
 			
 		if text == "/idpasangan":
 			bot.sendMessage(uid, "Kalau gangerti gapapa cuma ID aja kok, Usernamenya Rahasia:v")
-			bot.sendMessage('ID kamu ' + str(uid) + 'Berjodoh dengan ID ' + str(queue))
+			bot.sendMessage(uid, 'ID kamu ' + str(uid) + 'Berjodoh dengan ID ' + str(queue))
 		
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
