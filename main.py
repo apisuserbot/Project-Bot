@@ -153,7 +153,7 @@ def handle(update):
 			bot.sendMessage(uid, "Thanks My Boo", reply_markup=keyboard)			
 
 		elif text == '🔙 Main Menu':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari 👥', 'Info Profile 📌'], ['Total Pengguna👤'],['Join Grup✅']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari 👥', 'Info Profile 📌'], ['Total Pengguna👤'],['New✅']], resize_keyboard=True)
 			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 
 		elif text == 'Poto':
