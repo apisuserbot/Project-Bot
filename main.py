@@ -60,11 +60,13 @@ def handle(update):
 		if uid in queue["occupied"]:
 			if 'text' in update:
 				if text != "/key" and text != "❌ Exit" and text != "Next ▶️" and text != "Hapus Keyboard":
+					bot.sendChatAction(queue["occupied"][uid], "typing")
 					bot.sendMessage(queue["occupied"][uid], "" + text)
 			
 			if 'photo' in update:
 				if config[str(queue["occupied"][uid])]["pics"]:
 					photo = update['photo'][0]['file_id']
+					bot.sendChatAction(queue["occupied"][uid], "upload_photo")
 					bot.sendPhoto(queue["occupied"][uid], photo,caption=['text'])
 				else:
 					bot.sendMessage(queue["occupied"][uid], "Stranger tried to send you a photo, but you disabled this,  you can enable photos by using the /nopics command")
@@ -72,15 +74,28 @@ def handle(update):
 
 			if 'video' in update:
 				video = update['video']['file_id']
+				bot.sendChatAction(queue["occupied"][uid], "upload_video")
 				bot.sendVideo(queue["occupied"][uid], video)
 				
+			if 'document' in update:
+				document = update['document']['file_id']
+				bot.sendChatAction(queue["occupied"][uid], "upload_document")
+				bot.sendDocument(queue["occupied"][uid], document)
+				
+			if 'audio' in update:
+				audio = update['audio']['file_id']
+				bot.sendChatAction(queue["occupied"][uid], "upload_voice")
+				bot.sendAudio(queue["occupied"][uid], audio)
+				
+			if 'video_note' in update:
+				video_note = update['video_note']['file_id']
+				bot.sendChatAction(queue["occupied"][uid], "record_video_note")
+				bot.sendVideoNote(queue["occupied"][uid], video_note)
+			
 			if 'voice' in update:
 				voice = update['voice']['file_id']
+				bot.sendChatAction(queue["occupied"][uid], "record_voice")
 				bot.sendVoice(queue["occupied"][uid], voice)
-
-			if 'Video_Note' in update:
-				VideoNote = update['Video_Note']['file_id']
-				bot.sendVideoNote(queue["occupied"][uid], VideoNote)
 
 			if 'sticker' in update:
 				sticker = update['sticker']['file_id']
