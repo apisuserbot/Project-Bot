@@ -324,6 +324,19 @@ def handle(update):
 				bot.sendMessage(partner, '_Pasangan kamu telah ditemukann, selamat halu wkwk😜_',parse_mode='MarkDown', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
+		
+def _extract_message(update):
+	key = _find_first_key(update, ['update_id',
+				       'message',
+				       'edited_message',
+				       'channel_post',
+				       'edited_channel_post',
+				       'callback_query',
+				       'inline_query',
+				       'chosen_inline_result',
+				       'shipping_query',
+				       'pre_checkout_query'])
+	return key, update[key]
 
 if __name__ == '__main__':
 	bot.message_loop(handle)
