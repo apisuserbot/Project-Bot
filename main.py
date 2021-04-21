@@ -12,7 +12,7 @@ from glob import glob
 import pytz
 from datetime import datetime
 
-token = "1626343681:AAGlz-7HOLcI0HCF4L3UvI1Wno-SqJ4lm2w"
+token = "1626343681:AAH6zWFB1TnDoR6FmlFlqQNsgIRDP__C3qE"
 bot = amanobot.Bot(token)
 
 queue = {
@@ -67,7 +67,7 @@ def handle(update):
 				if config[str(queue["occupied"][uid])]["pics"]:
 					photo = update['photo'][0]['file_id']
 					bot.sendChatAction(queue["occupied"][uid], "upload_photo")
-					bot.sendPhoto(queue["occupied"][uid], photo,caption=['text'])
+					bot.sendPhoto(queue["occupied"][uid], photo)
 				else:
 					bot.sendMessage(queue["occupied"][uid], "Stranger tried to send you a photo, but you disabled this,  you can enable photos by using the /nopics command")
 					bot.sendMessage(uid, "Stranger disabled photos, and will not receive your photos")
@@ -257,7 +257,7 @@ def handle(update):
 		elif text == "Youtube▶️" or text == "/subscribe":
 			bot.sendMessage(uid, 'SUBSCRIBE CHANNEL YOUTUBE AKU:)', reply_markup=InlineKeyboardMarkup(inline_keyboard=[
 				[InlineKeyboardButton(text="SUBSCRIBE YOUTUBE", url='https://youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w')],
-				[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos')],
+				[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos'), InlineKeyboardButton(text='DOWNLOAD VIDEO TIKTOK', url='https://youtu.be/P0iBcUAGuzE')],
 				[InlineKeyboardButton(text=">>",url='t.me/caritemanh')]
 			]))
 		elif text == 'Link Kejutan':
