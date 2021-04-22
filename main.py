@@ -12,7 +12,7 @@ from glob import glob
 import pytz
 from datetime import datetime
 
-token = "1611784215:AAFtJyJgvQtee56J2-_3992DiADjvS84ATo"
+token = "1626343681:AAH6zWFB1TnDoR6FmlFlqQNsgIRDP__C3qE"
 bot = amanobot.Bot(token)
 
 queue = {
@@ -324,19 +324,6 @@ def handle(update):
 				bot.sendMessage(partner, '_Pasangan kamu telah ditemukann, selamat halu wkwk😜_',parse_mode='MarkDown', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
-		
-def _extract_message(update):
-	key = _find_first_key(update, ['update_id',
-				       'message',
-				       'edited_message',
-				       'channel_post',
-				       'edited_channel_post',
-				       'callback_query',
-				       'inline_query',
-				       'chosen_inline_result',
-				       'shipping_query',
-				       'pre_checkout_query'])
-	return key, update[key]
 
 if __name__ == '__main__':
 	bot.message_loop(handle)
