@@ -140,7 +140,8 @@ def handle(update):
 
 		elif text == 'Search 👥':
 			if not uid in queue["occupied"]:
-				bot.sendMessage(uid, '_Mencari pasangan halu kamu.. tunggu sebentar_',parse_mode='MarkDown')
+				keyboard = ReplyKeyboardRemove()
+				bot.sendMessage(uid, '_Mencari pasangan halu kamu.. tunggu sebentar_',parse_mode='MarkDown', reply_markup=keyboard)
 				print("[SB] " + str(uid) + " Join ke obrolan")
 				queue["free"].append(uid)
 
