@@ -104,7 +104,7 @@ def handle(update):
 
 		if text == "/start":
 			if not uid in queue["occupied"]:
-				keyboard = ReplyKeyboardMarkup(keyboard=[['Cari 👥', 'Info Profile 📌'], ['Total Pengguna👤'],['New✅'],['Imsyakiyah ✔️']], resize_keyboard=True)
+				keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
 				bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
 
 		if text == "/test":
@@ -138,25 +138,22 @@ def handle(update):
 				text += "*Waktu :* " + str(date1[1]) + " WIB" "\n"
 				bot.sendMessage(uid, text, parse_mode='MarkDown')
 
-		elif text == 'Cari 👥':
+		elif text == 'Search 👥':
 			if not uid in queue["occupied"]:
-				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['🔙 Main Menu']
-				], resize_keyboard=True)
-			bot.sendMessage(uid, '_Mencari pasangan halu kamu.. tunggu sebentar_',parse_mode='MarkDown', reply_markup=keyboard)
-			print("[SB] " + str(uid) + " Join ke obrolan")
-			queue["free"].append(uid)
+				bot.sendMessage(uid, '_Mencari pasangan halu kamu.. tunggu sebentar_',parse_mode='MarkDown')
+				print("[SB] " + str(uid) + " Join ke obrolan")
+				queue["free"].append(uid)
 
 		elif text == '❌ Exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari 👥', 'Info Profile 📌'], ['Total Pengguna👤'],['New✅'],['Imsyakiyah ✔️']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "Obrolan telah berakhir")
 			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan", reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
-		elif text == 'New✅':
+		elif text == 'MENU BOT✅':
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Link Kejutan', 'RandomPhoto📷'],['Covid-19〽️','Youtube▶️'],['🔙 Main Menu']], resize_keyboard=True)
 			bot.sendMessage(uid, "Welcome My boo🙊\nYuk Join My Grup @caritemanh dan Channel @haluituenakkkk :)", reply_markup=keyboard)
 
@@ -166,94 +163,7 @@ def handle(update):
 			dataweb = tampilan.find_all("div", {"class": "maincounter-number"})
 			ouy = "*KASUS VIRUS COVID-19 DI INDONESIA 🇮🇩*\n\nTerpapar Virus : {} Orang\nMeninggal : {} Orang\nSembuh : {} Orang".format(dataweb[0].span.text,dataweb[1].span.text,dataweb[2].span.text)
 			bot.sendMessage(uid, ouy, parse_mode='MarkDown')
-		
-		elif text == 'Imsyakiyah ✔️':
-			key = ReplyKeyboardMarkup(keyboard=[['Jakarta', 'Semarang', 'Jember', 'Bandung'], [
-				'Bukit Tinggi','Medan','Pontianak'
-			], ['Timor Tengah Selatan','Sumba Barat','Kota Bitung'], ['🔙 Main Menu']
-			],resize_keyboard=True)
-			bot.sendMessage(uid, "Jadwal Imsyakiyah 1442 H", reply_markup=key)
-
-		elif text == 'Jakarta':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[2].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-		
-		elif text == 'Semarang':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[3].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Jember':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[4].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Bandung':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[5].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Bukit Tinggi':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[6].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Medan':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[7].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Pontianak':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[8].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Timor Tengah Selatan':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[9].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Sumba Barat':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[10].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
-		elif text == 'Kota Bitung':
-			web = requests.get('https://davi78.github.io/imsak.html')
-			tam = BeautifulSoup(web.content, 'html.parser')
-			dataw = tam.find_all("div", {"class": "ramadhan"})
-			date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-			oui = "{}\n{}\n\n{}\n\nTime⏱ : {} WIB".format(dataw[0].p.text,dataw[1].p.text, dataw[11].p.text,date1[1])
-			bot.sendMessage(uid, oui)
-
+			
 		elif text == "Youtube▶️" or text == "/subscribe":
 			bot.sendMessage(uid, 'SUBSCRIBE CHANNEL YOUTUBE AKU:)', reply_markup=InlineKeyboardMarkup(inline_keyboard=[
 				[InlineKeyboardButton(text="SUBSCRIBE YOUTUBE", url='https://youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w')],
@@ -268,7 +178,7 @@ def handle(update):
                             ))	
 
 		elif text == '🔙 Main Menu':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari 👥', 'Info Profile 📌'], ['Total Pengguna👤'],['New✅'],['Imsyakiyah ✔️']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 
 		elif text == 'RandomPhoto📷':
@@ -279,7 +189,7 @@ def handle(update):
 
 		elif text == "Next ▶️" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari 👥', '🔙 Main Menu']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Seacrh 👥', '🔙 Main Menu']], resize_keyboard=True)
 			bot.sendMessage(uid, "Mengakhiri obrolan...")
 			bot.sendMessage(uid, "Obrolan telah berakhir")
 			bot.sendMessage(queue["occupied"][uid], "Obrolan telah berakhir")
@@ -291,16 +201,6 @@ def handle(update):
 				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar')
 				print("[SB] " + str(uid) + " Join ke obrolan") 
 				queue["free"].append(uid)
-
-		elif text == 'Hapus Keyboard':
-			lolt1 = ReplyKeyboardRemove()
-			bot.sendMessage(uid, 'Keyboard di Sembunyikan, klik /key untuk menampilkan keyboard', reply_markup=lolt1)
-
-		if text == "/key":
-				key = ReplyKeyboardMarkup(keyboard=[
-					['Next ▶️', '❌ Exit'], ['Hapus Keyboard']
-				], resize_keyboard=True)
-				bot.sendMessage(uid, 'Keyboard Di tampilkan', reply_markup=key)
 		
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
@@ -314,7 +214,7 @@ def handle(update):
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['Next ▶️', '❌ Exit'],['Hapus Keyboard']
+					['Next ▶️', '❌ Exit']
 				],resize_keyboard=True)
 				print('[SB] ' + str(uid) + ' Berjodoh dengan ' + str(partner))
 				queue["free"].remove(partner)
@@ -328,5 +228,5 @@ def handle(update):
 if __name__ == '__main__':
 	bot.message_loop(handle)
 
-	while True:
+	while 1:
 		time.sleep(10)
