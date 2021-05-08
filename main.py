@@ -123,7 +123,7 @@ def handle(update):
 			if not uid in queue["occupied"]:
 				bot.sendMessage(uid, "Mohon tunggu sebentar...")
 				bot.sendChatAction(uid, "upload_video")
-				bot.sendVideo(uid, video=open('iklan\gratis.mp4','rb'),
+				bot.sendVideo(uid, video=open('iklan/gratis.mp4','rb'),
 				caption='THR GRATIS KHUSUS BUAT PENGGUNA YANG BELUM PERNAH INSTAL TIKTOK LITE\n\n> Instal Tiktok Lite (Khusus Pengguna Baru)\n> Masukkan Kode Berikut *A5807808469*\n> Selamat Saldo Anda Sudah Masuk', parse_mode="MarkDown", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
 					[InlineKeyboardButton(text="DAPATKAN THR GRATIS", url="https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go")]
 				]))
