@@ -181,23 +181,6 @@ def handle(update):
 				[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos'), InlineKeyboardButton(text='DOWNLOAD VIDEO TIKTOK', url='https://youtu.be/P0iBcUAGuzE')],
 				[InlineKeyboardButton(text=">>",callback_data="nex")]
 			]))
-		if "data" in update:
-			if update["data"] == "nex":
-				keyboard = InlineKeyboardMarkup(inline_keyboard=[
-					[InlineKeyboardButton(text="NEW",url="www.goole.com")],
-					[InlineKeyboardButton(text="<<",callback_data="bac")]
-				])
-				bot.deleteMessage(amanobot.message_identifier(update["message"]))
-				bot.sendMessage(uid, "Yuk Nonton Video Video aku, Cek di button keyboard", reply_markup=keyboard)
-			elif update["data"] == "bac":
-				keyboard = InlineKeyboardMarkup(inline_keyboard=[
-					[InlineKeyboardButton(text="SUBSCRIBE YOUTUBE", url='https://youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w')],
-					[InlineKeyboardButton(text="FILM PENDEK", url="https://youtu.be/35wJMkvSlQU" )],
-					[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos'), InlineKeyboardButton(text='DOWNLOAD VIDEO TIKTOK', url='https://youtu.be/P0iBcUAGuzE')],
-					[InlineKeyboardButton(text=">>",callback_data="nex")]
-					])
-				bot.deleteMessage(amanobot.message_identifier(update["message"]))
-				bot.sendMessage(uid, "Yuk Nonton Video Video aku, Cek di button keyboard", reply_markup=keyboard)
 
 		elif text == 'Link Kejutan':
 			bot.sendMessage(uid, 'Silahkan Klik Kejutan Dari aku by😙',reply_markup = InlineKeyboardMarkup(inline_keyboard=[
