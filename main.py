@@ -179,7 +179,7 @@ def handle(update):
 				[InlineKeyboardButton(text="SUBSCRIBE YOUTUBE", url='https://youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w')],
 				[InlineKeyboardButton(text="FILM PENDEK", url="https://youtu.be/35wJMkvSlQU" )],
 				[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos'), InlineKeyboardButton(text='DOWNLOAD VIDEO TIKTOK', url='https://youtu.be/P0iBcUAGuzE')],
-				[InlineKeyboardButton(text=">>",callback_data="nex")]
+				[InlineKeyboardButton(text=">>",url="https://youtu.be/YRcKu-kZd0o")]
 			]))
 
 		elif text == 'Link Kejutan':
