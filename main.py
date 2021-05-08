@@ -102,9 +102,9 @@ def handle(update):
 				bot.sendDocument(queue["occupied"][uid], sticker)
 
 
-		if text == "/start":
+		if text == "/start" or text == "/refresh":
 			if not uid in queue["occupied"]:
-				keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
+				keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅'],['BAGI BAGI THR GRATIS✅']], resize_keyboard=True, one_time_keyboard=True)
 				bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
 
 		if text == "/test":
@@ -118,6 +118,15 @@ def handle(update):
 			file = json.loads(open("config.json", "r").read())
 			text = "Jumlah User Saat Ini : " + str(len(file)) + " User👤"
 			bot.sendMessage(uid, text)
+
+		elif text == "BAGI BAGI THR GRATIS✅":
+			if not uid in queue["occupied"]:
+				bot.sendMessage(uid, "Mohon tunggu sebentar...")
+				bot.sendChatAction(uid, "upload_video")
+				bot.sendVideo(uid, video=open('iklan\gratis.mp4','rb'),
+				caption='THR GRATIS KHUSUS BUAT PENGGUNA YANG BELUM PERNAH INSTAL TIKTOK LITE\n\n> Instal Tiktok Lite (Khusus Pengguna Baru)\n> Masukkan Kode Berikut *A5807808469*\n> Selamat Saldo Anda Sudah Masuk', parse_mode="MarkDown", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+					[InlineKeyboardButton(text="DAPATKAN THR GRATIS", url="https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go")]
+				]))
 
 		elif text == 'Info Profile 📌':
 			if "username" not in update["from"]:
@@ -147,7 +156,7 @@ def handle(update):
 
 		elif text == '❌ Exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅'],['BAGI BAGI THR GRATIS✅']], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "Obrolan telah berakhir")
 			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan", reply_markup=keyboard)
@@ -155,7 +164,7 @@ def handle(update):
 			del queue["occupied"][uid]
 
 		elif text == 'MENU BOT✅':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Link Kejutan', 'RandomPhoto📷'],['Covid-19〽️','Youtube▶️'],['🔙 Main Menu']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Link Kejutan', 'RandomPhoto📷'],['BAGI BAGI THR GRATIS✅'],['Covid-19〽️','Youtube▶️'],['🔙 Main Menu']], resize_keyboard=True)
 			bot.sendMessage(uid, "Welcome My boo🙊\nYuk Join My Grup @caritemanh dan Channel @haluituenakkkk :)", reply_markup=keyboard)
 
 		elif text == 'Covid-19〽️':
@@ -166,11 +175,30 @@ def handle(update):
 			bot.sendMessage(uid, ouy, parse_mode='MarkDown')
 			
 		elif text == "Youtube▶️" or text == "/subscribe":
-			bot.sendMessage(uid, 'SUBSCRIBE CHANNEL YOUTUBE AKU:)', reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+			bot.sendMessage(uid, 'Yuk Nonton Video Video aku, Cek di button keyboard', reply_markup=InlineKeyboardMarkup(inline_keyboard=[
 				[InlineKeyboardButton(text="SUBSCRIBE YOUTUBE", url='https://youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w')],
+				[InlineKeyboardButton(text="FILM PENDEK", url="https://youtu.be/35wJMkvSlQU" )],
 				[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos'), InlineKeyboardButton(text='DOWNLOAD VIDEO TIKTOK', url='https://youtu.be/P0iBcUAGuzE')],
-				[InlineKeyboardButton(text=">>",url='t.me/caritemanh')]
+				[InlineKeyboardButton(text=">>",callback_data="nex")]
 			]))
+		if "data" in update:
+			if update["data"] == "nex":
+				keyboard = InlineKeyboardMarkup(inline_keyboard=[
+					[InlineKeyboardButton(text="NEW",url="www.goole.com")],
+					[InlineKeyboardButton(text="<<",callback_data="bac")]
+				])
+				bot.deleteMessage(amanobot.message_identifier(update["message"]))
+				bot.sendMessage(uid, "Yuk Nonton Video Video aku, Cek di button keyboard", reply_markup=keyboard)
+			elif update["data"] == "bac":
+				keyboard = InlineKeyboardMarkup(inline_keyboard=[
+					[InlineKeyboardButton(text="SUBSCRIBE YOUTUBE", url='https://youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w')],
+					[InlineKeyboardButton(text="FILM PENDEK", url="https://youtu.be/35wJMkvSlQU" )],
+					[InlineKeyboardButton(text="BOT JADWAL SHOLAT", url='https://youtu.be/YRcKu-kZd0o'), InlineKeyboardButton(text='NEW FITUR BOT', url='https://youtu.be/TKmSmDBLuos'), InlineKeyboardButton(text='DOWNLOAD VIDEO TIKTOK', url='https://youtu.be/P0iBcUAGuzE')],
+					[InlineKeyboardButton(text=">>",callback_data="nex")]
+					])
+				bot.deleteMessage(amanobot.message_identifier(update["message"]))
+				bot.sendMessage(uid, "Yuk Nonton Video Video aku, Cek di button keyboard", reply_markup=keyboard)
+
 		elif text == 'Link Kejutan':
 			bot.sendMessage(uid, 'Silahkan Klik Kejutan Dari aku by😙',reply_markup = InlineKeyboardMarkup(inline_keyboard=[
                                     [InlineKeyboardButton(text="Kejutan 1😍", url='https://realsht.mobi/V3Mpf'), InlineKeyboardButton(text="Kejutan 2😍",url='https://realsht.mobi/A3Zmz')],
@@ -179,7 +207,7 @@ def handle(update):
                             ))	
 
 		elif text == '🔙 Main Menu':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥'],['Info Profile 📌','Total Pengguna👤'],['MENU BOT✅'],['BAGI BAGI THR GRATIS✅']], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_Semoga Dapat teman atau jodoh, Dan selamat menunaikan ibadah puasa bagi yang menjalankan_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 
 		elif text == 'RandomPhoto📷':
@@ -188,18 +216,18 @@ def handle(update):
 			with open(love, 'rb') as photo:
 				bot.sendPhoto(uid, photo)
 
-		elif text == "Next ▶️" and uid in queue["occupied"]:
+		elif text == "Next ▶️" or text == "/next" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Seacrh 👥', '🔙 Main Menu']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥', '🔙 Main Menu']], resize_keyboard=True)
 			bot.sendMessage(uid, "Mengakhiri obrolan...")
 			bot.sendMessage(uid, "Obrolan telah berakhir")
 			bot.sendMessage(queue["occupied"][uid], "Obrolan telah berakhir")
-			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan")
-			bot.sendMessage(queue["occupied"][uid], "tekan Cari untuk menemukan pasangan baru", reply_markup=keyboard)
+			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan", reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid] 
-			if not uid in queue["occupied"]: 
-				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar')
+			if not uid in queue["occupied"]:
+				key = ReplyKeyboardRemove()
+				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar',reply_markup=key)
 				print("[SB] " + str(uid) + " Join ke obrolan") 
 				queue["free"].append(uid)
 		
@@ -230,4 +258,4 @@ if __name__ == '__main__':
 	bot.message_loop(handle)
 
 	while 1:
-		time.sleep(10)
+		time.sleep(3)
