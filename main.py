@@ -106,6 +106,15 @@ def handle(update):
 			if not uid in queue["occupied"]:
 				keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna👤','MENU BOT✅'],['BAGI BAGI THR GRATIS✅']], resize_keyboard=True, one_time_keyboard=True)
 				bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_🇮🇩 Semoga Dapat teman atau jodoh\n🇳🇿 I hope you can make a friend or a partner_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
+				
+		if 'new_chat_members' in update:
+			name = update["from"]["username"]
+			grp = update["chat"]["id"]
+			keyboard = InlineKeyboardMarkup(inline_keyboard=[
+				[InlineKeyboardButton(text="Cari Teman👦", url="t.me/chatjomblohalu_bot")]
+			])
+			bot.sendMessage(grp,f"Selamat Bergabung di Group @{name}\nJika Ingin mencari teman bisa gunakan bot ini:)",reply_markup=keyboard ,parse_mode='MarkDown')
+			
 
 		if text == "/test":
 			if not uid in queue["occupied"]:
