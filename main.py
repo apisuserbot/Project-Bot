@@ -11,8 +11,11 @@ import json
 from glob import glob
 import pytz
 from datetime import datetime
+from config import TOKEN
+from TikTokApi import TikTokApi
 
-token = "1626343681:AAH6zWFB1TnDoR6FmlFlqQNsgIRDP__C3qE"
+token = TOKEN
+#"1626343681:AAH6zWFB1TnDoR6FmlFlqQNsgIRDP__C3qE"
 bot = amanobot.Bot(token)
 
 queue = {
@@ -104,32 +107,41 @@ def handle(update):
 
 			if 'contact' in update:
 				nama = update["contact"]["first_name"]
-			#	#nama = update["contact"]["last_name"]
+			#	nama = update["contact"]["last_name"]
 				contact = update['contact']['phone_number']
 				bot.sendContact(queue["occupied"][uid], contact, first_name=nama, last_name=None)
+			
+			if 'dice' in update:
+				dice = update["dice"]["emoji"]
+				keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɪɴsᴛᴀɢʀᴀᴍ", url="https://instagram.com/davialfajr_")]])
+				bot.sendDice(queue["occupied"][uid],emoji=dice,reply_markup=keyboard)
 
 		if text == "/start" or text == "/refresh":
 			if not uid in queue["occupied"]:
-				with open('is.txt', 'r') as file:
-					user_ids = file.read()
-					if str(uid) not in user_ids:
-						with open('is.txt', 'w') as f:
-							f.write(user_ids+"\n"+str(uid))
-							keyboard1 = ReplyKeyboardRemove()
-							#keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɪɴsᴛᴀɢʀᴀᴍ", url="https://instagram.com/davialfajr_"),InlineKeyboardButton(text="ᴛɪᴋᴛᴏᴋ", url="https://vm.tiktok.com/ZSJC6FWw2/")]])
-							bot.sendMessage(uid,"_⚡️ BOT CHAT ANONYMOUS ⚡️\n\nKAMU DAPAT MENEMUKAN TEMAN\nSECARA RANDOM 🦊 TEKAN [ /start ]_", parse_mode="MarkDown", reply_markup=keyboard1, reply_to_message_id=update['message_id'])
-					else:
-						keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna👤','MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
-						#keyboard1 = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɪɴsᴛᴀɢʀᴀᴍ", url="https://instagram.com/davialfajr_"),InlineKeyboardButton(text="ᴛɪᴋᴛᴏᴋ", url="https://vm.tiktok.com/ZSJC6FWw2/")]])
-						bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_🇮🇩 Semoga Dapat teman atau jodoh\n🇳🇿 I hope you can make a friend or a partner_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/davialfajr_) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w) > [TIKTOK](https://vm.tiktok.com/ZSJC6FWw2/)", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
+				#with open('is.txt', 'r') as file:
+				#	user_ids = file.read()
+				#	if str(uid) not in user_ids:
+				#		with open('is.txt', 'w') as f:
+				#			f.write(user_ids+"\n"+str(uid))
+				#			keyboard1 = ReplyKeyboardRemove()
+				#			#keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɪɴsᴛᴀɢʀᴀᴍ", url="https://instagram.com/davialfajr_"),InlineKeyboardButton(text="ᴛɪᴋᴛᴏᴋ", url="https://vm.tiktok.com/ZSJC6FWw2/")]])
+				#			bot.sendMessage(uid,"_⚡️ BOT CHAT ANONYMOUS ⚡️\n\nKAMU DAPAT MENEMUKAN TEMAN\nSECARA RANDOM 🦊 TEKAN [ /start ]_", parse_mode="MarkDown", reply_markup=keyboard1, reply_to_message_id=update['message_id'])
+				#	else:
+				#keyboard1 = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna👤','MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
+				keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɪɴsᴛᴀɢʀᴀᴍ", url="https://instagram.com/davialfajr_"),InlineKeyboardButton(text="ɢʀᴜᴘ ᴄʜᴀᴛ", url="t.me/caritemanh")]])
+				bot.sendMessage(uid, "⚡️ BOT CHAT ANONYMOUS ⚡️\n\n_🇮🇩 Semoga Dapat teman atau jodoh\n🇳🇿 I hope you can make a friend or a partner\n\n?> untuk mencari teman obrolan gunakan perintah /search_", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
 						#bot.sendMessage(uid,"_[❗️] Follow sosial media dan support terus bot ini_",parse_mode="MarkDown", reply_markup=keyboard1)
 
 		if 'message_id' in update:
 			if not uid in queue["occupied"]:
-				if text != "/start" and text != "Pengguna👤" and text !="Next ▶️" and text != "/refresh" and text != "/help" and text != "/ping" and text != "Search 🔍" and text != "MENU BOT✅" and text != "🔙 Main Menu" and text != "BAGI BAGI THR GRATIS✅" and text != "RandomPhoto📷" and text != "Info Profile 📌" and text != "Covid-19〽️" and text != "/mabar" and text != "Link Kejutan" and text != "Youtube▶️" and text != "/user":
-					news = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɢʀᴏᴜᴘ ᴄʜᴀᴛ", url="t.me/caritemanh"), InlineKeyboardButton(text="𝔽𝕆𝕃𝕃𝕆𝕎 𝕄𝔼", url="https://instagram.com/davialfajr_")]])
-					bot.sendMessage(uid, "_[❗️] Maap kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /start pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
-						
+				if text != "/start" and text != "Pengguna👤" and text !="Next ▶️" and text != "/refresh" and text != "/help" and text != "/search" and text != "Search 🔍" and text != "MENU BOT✅" and text != "🔙 Main Menu" and text != "/trendingtiktok" and text != "RandomPhoto📷" and text != "Info Profile 📌" and text != "Covid-19〽️" and text != "/mabar" and text != "Link Kejutan" and text != "Youtube▶️" and text != "/user":
+					news = ReplyKeyboardRemove()
+					#news = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="ɢʀᴏᴜᴘ ᴄʜᴀᴛ", url="t.me/caritemanh"), InlineKeyboardButton(text="𝔽𝕆𝕃𝕃𝕆𝕎 𝕄𝔼", url="https://instagram.com/davialfajr_")]])
+					bot.sendMessage(uid, "_[❗️] Maap kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
+					# pesan = bot.sendMessage(uid, "Wait...", reply_markup=keyboarddihapus)
+					# time.sleep(4)
+					# hapus = pesan['message_id']
+					# bot.deleteMessage((uid,hapus))	
 		#if 'text' in update and update['text'] == '/pis':
 		#	with open('id.txt', 'r') as file:
 		#		user_ids = file.read()
@@ -168,7 +180,24 @@ def handle(update):
 					keyboard = ReplyKeyboardMarkup(keyboard=[['ML','PUBG','FF'],['🔙 Main Menu']], resize_keyboard=True, one_time_keyboard=True)
 					bot.sendMessage(uid, pesan, reply_markup=keyboard, reply_to_message_id=update['message_id'])
 				else:
+					bot.sendDice(uid,emoji="🎳")
 					bot.sendMessage(uid, "⚡️ Perintah ini hanya untuk admin ⚡️")
+
+		if text == "/trendingtiktok":
+			if not uid in queue["occupied"]:
+				verifyFp="verify_kqaznovn_mCKIkR6U_EB6J_4BAs_8a2g_YDUsz06lGKRk"
+				api = TikTokApi.get_instance()
+				results = 10
+				trending = api.trending(count=results, custom_verifyFp=verifyFp)
+				for tiktok in trending:
+					link = str(tiktok['video']['downloadAddr'])
+					userid = str(tiktok['author']['uniqueId'])
+					descripsi = str(tiktok['desc'])
+					uid1 = update["chat"]["id"]
+					inline = InlineKeyboardMarkup(inline_keyboard=[
+						[InlineKeyboardButton(text="FOLLOW INSTAGRAM", url='https://instagram.com/davialfjr'), InlineKeyboardButton(text="GRUP CHAT", url="t.me/caritemanh")]])
+					bot.sendMessage(uid1, f"LINK VIDEO = [DISINI]({link})\nUSERNAME TIKTOK = [DISINI](https://www.tiktok.com/@{userid})\nDESKRIPSI VIDEO ⬇️⬇️\n\n{descripsi}", parse_mode="Markdown", reply_markup=inline, reply_to_message_id=update['message_id'])
+					time.sleep(2)
 
 		if text == "/test":
 			if not uid in queue["occupied"]:
@@ -190,25 +219,32 @@ def handle(update):
 			else:
 				bot.sendMessage(uid, "⚡️ Perintah ini hanya untuk admin ⚡️")
 		elif text == 'Info Profile 📌':
-			if "username" not in update["from"]:
-				return bot.sendMessage(uid, "Harap Isi Username Kamu!!")
-			if "last_name" not in update["from"]:
-				return bot.sendMessage(uid, "Harap Isi Nama Belakang Kamu!!")
-			if update["from"]["last_name"] != None:
-				name = update["from"]["first_name"] + " " + update["from"]["last_name"]
+			if str(uid) in ADMIN :
+				#if "last_name" not in update["from"]:
+				#	return bot.sendMessage(uid, "Harap Isi Nama Belakang Kamu!!")
+				#if not update["from"]["last_name"] == None else update["from"]["last_name"]:
+				#lastname = update["from"]["last_name"] if "last_name" in update else None
+				name = update["from"]["first_name"]
 				_id = update["from"]["id"]
+				#username = update["from"]["username"] if "username" not in update None
 				username = update["from"]["username"]
 				tipe = update["chat"]["type"]
 				date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
 				text = "*Nama : " + str(name)+"*" +"\n"
 				text += "*ID Kamu :* " +"`"+ str(_id) +"`"+"\n"
-				text += "*Username :* @" + str(username) + "\n"
+				text += f"*Username :* @{username}"+ "\n"
 				text += "*Tipe Chat* : " +"_"+ str(tipe)+"_" +"\n"
 				text += "*Tanggal :* " + str(date1[0]) +"\n"
 				text += "*Waktu :* " + str(date1[1]) + " WIB" "\n"
-				bot.sendPhoto(uid, photo=open("img/profil.jpg","rb"),caption=text, parse_mode='MarkDown')
+				bot.sendMessage(uid, text, parse_mode='MarkDown', reply_to_message_id=update['message_id'])
+			else:
+				#forw = update["forward_from"]['language_code']
+				bahasa = update["from"]["language_code"]
+				name = update["from"]["first_name"]
+				_id = update["from"]["id"]
+				bot.sendMessage(uid, f"Nama = {name}\nID = `{_id}`\nBahasa = {bahasa}", parse_mode="MarkDown")
 
-		elif text == 'Search 🔍':
+		elif text == 'Search 🔍' or text == "/search":
 			if not uid in queue["occupied"]:
 				keyboard = ReplyKeyboardRemove()
 				bot.sendMessage(uid, '_Mencari pasangan halu kamu.. tunggu sebentar_',parse_mode='MarkDown', reply_markup=keyboard)
@@ -218,9 +254,8 @@ def handle(update):
 		elif text == '❌ Exit' or text == '/exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna👤','MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, "Obrolan telah berakhir")
-			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_🇮🇩 Semoga Dapat teman atau jodoh\n🇳🇿 I hope you can make a friend or a partner_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
-			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan", reply_markup=keyboard)
+			bot.sendMessage(uid, "🔸 _Obrolan telah berakhir_", parse_mode='MarkDown', reply_markup=keyboard)
+			bot.sendMessage(queue["occupied"][uid], "🔹 _Pasangan kamu keluar dari obrolan_", parse_mode='MarkDown', reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
@@ -254,7 +289,7 @@ def handle(update):
 
 		elif text == '🔙 Main Menu':
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna👤','MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, "*Selamat Bergabung Di Bot AnonymousMyBoo🙊*\n\n_🇮🇩 Semoga Dapat teman atau jodoh\n🇳🇿 I hope you can make a friend or a partner_\n\n*NOTE:*\nWAJIB JOIN [GRUP](t.me/caritemanh) > [CHANNEL](t.me/haluituenakkkk) DAN FOLLOW [INSTAGRAM](https://instagram.com/botmyboo2) > [YOUTUBE](https://www.youtube.com/channel/UCE6TQ4yG8eNEiOzqRSfOu-w)", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
+			bot.sendMessage(uid, "_🔄 Kembali_", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 
 		#elif text == 'RandomPhoto📷':
 		#	picls = glob("img/*.jpg")
@@ -265,13 +300,13 @@ def handle(update):
 		elif text == "Next ▶️" or text == "/next" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍', '🔙 Main Menu']], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, "🛑 Obrolan telah berakhir!")
-			bot.sendMessage(queue["occupied"][uid], "🛑 Obrolan telah berakhir!", reply_markup=keyboard)
+			bot.sendMessage(uid, "_🛑 Obrolan telah berakhir!_",parse_mode="MarkDown")
+			bot.sendMessage(queue["occupied"][uid], "_🛑 Obrolan telah berakhir!_",parse_mode="MarkDown", reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid] 
 			if not uid in queue["occupied"]:
 				key = ReplyKeyboardRemove()
-				bot.sendMessage(uid, 'Mencari pasangan baru kamu.. tunggu sebentar',reply_markup=key)
+				bot.sendMessage(uid, '_Mencari pasangan baru kamu.. tunggu sebentar_',parse_mode="MarkDown" ,reply_markup=key)
 				print("[SB] " + str(uid) + " Join ke obrolan") 
 				queue["free"].append(uid)
 		
@@ -287,7 +322,7 @@ def handle(update):
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['Hii..','Cewe atau Cowo?','Umur Berapa?'],['Next ▶️', '❌ Exit']
+					["🎲","🎯","🎳","🏀","⚽","🎰"],['Next ▶️', '❌ Exit'],[dict(text='Send my phone', request_contact=True)]
 				],resize_keyboard=True, one_time_keyboard=True)
 				print('[SB] ' + str(uid) + ' Berjodoh dengan ' + str(partner))
 				queue["free"].remove(partner)
