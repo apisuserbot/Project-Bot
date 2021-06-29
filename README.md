@@ -9,5 +9,5 @@ Quotes kami [Quotes Official](https://t.me/Quotes_Channel_Official)
 
 # Credit 
 
-•    [Apis](https://github.com/apisuserbot)
-
+•    [Apis](https://github.com/apisuserbot) - KANGER
+•    [Davi](https://github.com/davi78) - DEV
