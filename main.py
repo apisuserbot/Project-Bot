@@ -116,6 +116,17 @@ def handle(update):
                     ['Plain text', KeyboardButton(text='Text only')],
 					[dict(text='phone', request_contact=True), KeyboardButton(text='Location', request_location=True)]], resize_keyboard=True)
 				bot.sendMessage(uid, "contoh", reply_markup=lolt)
+                 
+                 elif text == "/setting":
+			bot.sendMessage(uid, "Pilih Jenis Kelamin Anda", reply_markup={"inline_keyboard": [[{"text":"Pria 👨‍", "callback_data":"gender-laki"}, {"text":"Wanita 👩🏻", "callback_data":"gender-perempuan"}]]})
+
+		 if "data" in update:
+			if update["data"] == "gender-laki":
+				profil[uid] = {"name": update["from"]["first_name"], "gender": "Pria/Male 👨‍"}
+				bot.sendMessage(uid, "Gender telah di setting ke Pria 👨‍")
+			elif update["data"] == "gender-perempuan":
+					profil[uid] = {"name": update["from"]["first_name"], "gender": "Wanita/Female 👩🏻"}
+					bot.sendMessage(uid, "Gender telah di setting ke Wanita 👩🏻")
 
 		elif text == "Pengguna 👤":
 			file = json.loads(open("app.json", "r").read())
