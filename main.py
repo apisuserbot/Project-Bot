@@ -117,7 +117,7 @@ def handle(update):
 					[dict(text='phone', request_contact=True), KeyboardButton(text='Location', request_location=True)]], resize_keyboard=True)
 				bot.sendMessage(uid, "contoh", reply_markup=lolt)
                  
-                 elif text == "/setting":
+                if text == "/setting":
 			bot.sendMessage(uid, "Pilih Jenis Kelamin Anda", reply_markup={"inline_keyboard": [[{"text":"Pria 👨‍", "callback_data":"gender-laki"}, {"text":"Wanita 👩🏻", "callback_data":"gender-perempuan"}]]})
 
 		 if "data" in update:
