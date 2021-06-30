@@ -8,7 +8,7 @@ Gabung grup chat kami [Teman Online](https://t.me/Cari_Teman_Online_Group)
 Quotes kami [Quotes Official](https://t.me/Quotes_Channel_Official)
 
 <b>
-<a href="https://heroku.com/deploy?template=https://github.com/kenkannih/Chatbot"><img src="https://img.shields.io/badge/Deploy Project-Bot-blue?style=badge&logo=heroku"width="310" height="50"/></a>
+<a href="https://heroku.com/deploy?template=https://github.com/apisuserbot/Project-Bot"><img src="https://img.shields.io/badge/Deploy Project-Bot-blue?style=badge&logo=heroku"width="310" height="50"/></a>
 </b>
 
 ### Perintah UNTUK [@botfather](https://t.me/botfather)
