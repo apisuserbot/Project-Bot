@@ -28,7 +28,7 @@ def saveConfig(data):
 
 if __name__ == '__main__':
 	s = time.time()
-	print(f'[#] Buatan oleh\n[i] Created by {OWNER}\n')
+	print(f'[#] Buatan Owner\n[i] Created by {OWNER}\n')
 	print('[#] mengecek config...')
 	if not os.path.isfile('app.json'):
 		print('[#] memebuat config file...')
@@ -109,6 +109,10 @@ def handle(update):
 					news = ReplyKeyboardRemove()
 					bot.sendMessage(uid, "_[❗️] Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
 		
+                if text == "/help":
+			if not uid in queue["occupied"]:
+                                keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="💬 Support Project", url=f"https://t.me/project_to_chat")]])
+				bot.sendMessage(uid, "_👋🏻 Hai Kamu , Disini Menu Bantuan Kami , Jika Anda Memiliki Keluhan Atau Resah Terhadap Orang Orang Tidak Bertanggung Jawab Pada Bot Kami , Bisa Bergabung Pada Group Support Project Kami Dibawah Ini_\n\n*Salam Admin!*", parse_mode='Markdown', reply_markup=keyboard)
 
 		if text == "/test":
 			if not uid in queue["occupied"]:
@@ -211,8 +215,8 @@ def handle(update):
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
-				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
-				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n*owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n\n*owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
 
