@@ -117,16 +117,13 @@ def handle(update):
 					[dict(text='phone', request_contact=True), KeyboardButton(text='Location', request_location=True)]], resize_keyboard=True)
 				bot.sendMessage(uid, "contoh", reply_markup=lolt)
                  
-                 elif text == "setting 📌":
-			bot.sendMessage(uid, "Pilih Jenis Kelamin Anda", reply_markup={"inline_keyboard": [[{"text":"Pria 👨‍", "callback_data":"gender-laki"}, {"text":"Wanita 👩🏻", "callback_data":"gender-perempuan"}]]})
-
-		 if "data" in update:
-			if update["data"] == "gender-laki":
-				profil[uid] = {"name": update["from"]["first_name"], "gender": "Pria/Male 👨‍"}
-				bot.sendMessage(uid, "Gender telah di setting ke Pria 👨‍")
-			elif update["data"] == "gender-perempuan":
-					profil[uid] = {"name": update["from"]["first_name"], "gender": "Wanita/Female 👩🏻"}
-					bot.sendMessage(uid, "Gender telah di setting ke Wanita 👩🏻")
+                if text == "/ping":
+			grp = update["chat"]["id"]
+			s = time.time()
+			test = bot.sendMessage(grp,"Ping...")
+			messageId = test['message_id']
+			bot.deleteMessage((grp, messageId))
+			bot.sendMessage(grp,'🏓 Pong!\n*➡️ Bot Online Sekitar ' + str(time.time() - s) + ' s*', parse_mode="MarkDown")
 
 		elif text == "Pengguna 👤":
 			file = json.loads(open("app.json", "r").read())
