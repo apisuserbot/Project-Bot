@@ -7,8 +7,11 @@ Project-Bot adalah sebuah bot yang mirip sekali dengan anonymous , Dan kalian bi
 Gabung grup chat kami [Teman Online](https://t.me/Cari_Teman_Online_Group)
 Quotes kami [Quotes Official](https://t.me/Quotes_Channel_Official)
 
+<b>
+<a href="https://heroku.com/deploy?template=https://github.com/kenkannih/Chatbot"><img src="https://img.shields.io/badge/Deploy Project-Bot-blue?style=badge&logo=heroku"width="310" height="50"/></a>
+</b>
+
 # Credit 
 
-•    [Apis](https://github.com/apisuserbot) - KANGER
-
-•    [Davi](https://github.com/davi78) - DEV
+*    [Apis](https://github.com/apisuserbot) - KANGER
+*    [Davi](https://github.com/davi78) - DEV
