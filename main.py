@@ -107,7 +107,7 @@ def handle(update):
 			if not uid in queue["occupied"]:
 				if text != "/start" and text != "Pengguna 👤" and text !="Next ▶️" and text != "/refresh" and text != "/help" and text != "/search" and text != "Search 🔍" and text != "🛠 Menu Bot" and text != "🔙 Main Menu" and text != "Info Profile 📌" and text != "📝 Info Covid-19"  and text != "/user":
 					news = ReplyKeyboardRemove()
-					bot.sendMessage(uid, "_[❗️] Maap kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
+					bot.sendMessage(uid, "_[❗️] Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
 		
 
 		if text == "/test":
@@ -116,14 +116,6 @@ def handle(update):
                     ['Plain text', KeyboardButton(text='Text only')],
 					[dict(text='phone', request_contact=True), KeyboardButton(text='Location', request_location=True)]], resize_keyboard=True)
 				bot.sendMessage(uid, "contoh", reply_markup=lolt)
-                 
-                if text == "/ping":
-			grp = update["chat"]["id"]
-			s = time.time()
-			test = bot.sendMessage(grp,"Ping...")
-			messageId = test['message_id']
-			bot.deleteMessage((grp, messageId))
-			bot.sendMessage(grp,'🏓 Pong!\n*➡️ Bot Online Sekitar ' + str(time.time() - s) + ' s*', parse_mode="MarkDown")
 
 		elif text == "Pengguna 👤":
 			file = json.loads(open("app.json", "r").read())
@@ -219,8 +211,8 @@ def handle(update):
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
-				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan, selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor mimin aja ya @{OWNER}_',parse_mode='MarkDown', reply_markup=keyboard)
-				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann, selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor mimin aja ya @{OWNER}_',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n*owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
 
