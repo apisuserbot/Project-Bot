@@ -3,7 +3,7 @@
   "description": "Bot anonymous chat telegram.",
   "repository": "https://github.com/apisuserbot/Project-Bot",
   "logo": "https://telegra.ph/file/f9edcf0f82516206171d9.jpg",
-  "keywoards": ["Project-Bot", "telegram", "python"]
+  "keywords": ["Project-Bot", "telegram", "python"],
   "env": {
     "ADMIN": {
       "description": "Isi dengan id admin",
