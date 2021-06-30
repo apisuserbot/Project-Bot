@@ -117,7 +117,7 @@ def handle(update):
 					[dict(text='phone', request_contact=True), KeyboardButton(text='Location', request_location=True)]], resize_keyboard=True)
 				bot.sendMessage(uid, "contoh", reply_markup=lolt)
                  
-                if text == "/setting":
+                 elif text == "setting 📌":
 			bot.sendMessage(uid, "Pilih Jenis Kelamin Anda", reply_markup={"inline_keyboard": [[{"text":"Pria 👨‍", "callback_data":"gender-laki"}, {"text":"Wanita 👩🏻", "callback_data":"gender-perempuan"}]]})
 
 		 if "data" in update:
@@ -135,7 +135,7 @@ def handle(update):
 
 		elif text == "/user":
 			if str(uid) in ADMIN :
-				file = open("is.txt", "r")
+				file = open("admin.txt", "r")
 				text = "Pengguna : " + str(len(file.readlines())) + " Online👤"
 				bot.sendMessage(uid, text)
 			else:
