@@ -147,13 +147,13 @@ def handle(update):
 				bahasa = update["from"]["language_code"]
 				name = update["from"]["first_name"]
 				_id = update["from"]["id"]
-				bot.sendMessage(uid, f"Nama = {name}\nID = `{_id}`\nBahasa = {bahasa}", parse_mode="MarkDown")
+				bot.sendMessage(uid, f"Info Profile 📌\n\nNama = {name}\nID = `{_id}`\nBahasa = {bahasa}", parse_mode="MarkDown")
 
 		elif text == 'Search 🔍' or text == "/search":
 			if not uid in queue["occupied"]:
 				keyboard = ReplyKeyboardRemove()
 				bot.sendMessage(uid, '🔍 _Sedang mencari pasangan ngobrol kamu, Mohon tunggu sebentar..._',parse_mode='MarkDown', reply_markup=keyboard)
-				print("[SB] " + str(uid) + " Join ke obrolan")
+				print("[SB] " + str(uid) + " Bergabung ke obrolan")
 				queue["free"].append(uid)
 
 		elif text == '❌ Exit' or text == '/exit' and uid in queue["occupied"]:
@@ -174,11 +174,11 @@ def handle(update):
 			web = requests.get('https://www.worldometers.info/coronavirus/country/indonesia/')
 			tampilan = BeautifulSoup(web.content, 'html.parser')
 			dataweb = tampilan.find_all("div", {"class": "maincounter-number"})
-			ouy = "*KASUS VIRUS COVID-19 DI INDONESIA 🇮🇩*\n\n😷 Terpapar Virus : {} 😵 Orang\nMeninggal : {} 😇 Orang\nSembuh : {} Orang".format(dataweb[0].span.text,dataweb[1].span.text,dataweb[2].span.text)
+			ouy = "*KASUS VIRUS COVID-19 DI INDONESIA 🇮🇩*\n\n😷 Terpapar Virus : {} jiwa\n😵 Orang Meninggal : {} jiwa\n😇 Orang Sembuh : {} jiwa".format(dataweb[0].span.text,dataweb[1].span.text,dataweb[2].span.text)
 			bot.sendMessage(uid, ouy, parse_mode='MarkDown')
 			
 		elif text == '🔙 Main Menu':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna👤','MENU BOT✅']], resize_keyboard=True, one_time_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna 👤','🛠 Menu Bot']], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "_🔄 Kembali_", parse_mode='MarkDown', disable_web_page_preview=True, reply_markup=keyboard)
 		elif text == "Next ▶️" or text == "/next" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
@@ -211,8 +211,8 @@ def handle(update):
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
-				bot.sendMessage(uid, f'😇 _Pasangan kamu telah ditemukan, selamat mengobrol_\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor mimin aja ya @{OWNER}_',parse_mode='MarkDown', reply_markup=keyboard)
-				bot.sendMessage(partner, f'😇 _Pasangan kamu telah ditemukann, selamat mengobrol_\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor mimin aja ya @{OWNER}_',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan, selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor mimin aja ya @{OWNER}_',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann, selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor mimin aja ya @{OWNER}_',parse_mode='MarkDown', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
 
