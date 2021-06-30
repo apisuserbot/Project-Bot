@@ -21,6 +21,10 @@
       "description": "Isi dengan username kalian tanpa tanda @",
       "value": ""
     },
+    "INSTAGRAM": {
+      "description": "Isi username instagram kalian dengan contoh (https://instagram.com/apis_goodboy)",
+      "value": ""
+    },
     "GROUP": {
       "description": "Isi dengan username group kalian tanpa tanda @ (kalo gak di isi gapapa)",
       "required":false,
