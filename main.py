@@ -111,8 +111,7 @@ def handle(update):
 		
                 if text == "/help":
 			if not uid in queue["occupied"]:
-                                keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="💬 Support Project", url=f"https://t.me/project_to_chat")]])
-				bot.sendMessage(uid, "_👋🏻 Hai Kamu , Disini Menu Bantuan Kami , Jika Anda Memiliki Keluhan Atau Resah Terhadap Orang Orang Tidak Bertanggung Jawab Pada Bot Kami , Bisa Bergabung Pada Group Support Project Kami Dibawah Ini_\n\n*Salam Admin!*", parse_mode='Markdown', reply_markup=keyboard)
+				bot.sendMessage(uid, "_👋🏻 Hai Kamu , Disini Menu Bantuan Kami , Jika Anda Memiliki Keluhan Atau Resah Terhadap Orang Orang Tidak Bertanggung Jawab Pada Bot Kami , Bisa Bergabung Pada Group Support Project Kami_\n\n*Salam Admin!*", parse_mode='Markdown', reply_markup=keyboard)
 
 		if text == "/test":
 			if not uid in queue["occupied"]:
