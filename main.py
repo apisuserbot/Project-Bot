@@ -119,13 +119,13 @@ def handle(update):
 
 		elif text == "Pengguna 👤":
 			file = json.loads(open("app.json", "r").read())
-			text = "Pengguna Online Saat Ini : " + str(len(file)) + " Online👤"
+			text = "Pengguna Online Saat Ini : " + str(len(file)) + " Online 👤"
 			bot.sendMessage(uid, text)
 
 		elif text == "/user":
 			if str(uid) in ADMIN :
 				file = open("admin.txt", "r")
-				text = "Pengguna : " + str(len(file.readlines())) + " Online👤"
+				text = "Pengguna : " + str(len(file.readlines())) + " Online 👤"
 				bot.sendMessage(uid, text)
 			else:
 				bot.sendMessage(uid, "👮 Perintah ini hanya untuk admin")
@@ -147,12 +147,12 @@ def handle(update):
 				bahasa = update["from"]["language_code"]
 				name = update["from"]["first_name"]
 				_id = update["from"]["id"]
-				bot.sendMessage(uid, f"*Info Profile* 📌\n\nNama = {name}\nID = `{_id}`\nBahasa = {bahasa}", parse_mode="MarkDown")
+				bot.sendMessage(uid, f"*Info Profile* 📌\n\n*Nama :* {name}\n*ID Kamu :* `{_id}`\n*Bahasa : {bahasa}*", parse_mode="MarkDown")
 
 		elif text == 'Search 🔍' or text == "/search":
 			if not uid in queue["occupied"]:
 				keyboard = ReplyKeyboardRemove()
-				bot.sendMessage(uid, '🔍 _Sedang mencari pasangan ngobrol kamu, Mohon tunggu sebentar..._',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(uid, '🔍 _Sedang mencari pasangan ngobrol kamu , Mohon tunggu sebentar..._',parse_mode='MarkDown', reply_markup=keyboard)
 				print("[SB] " + str(uid) + " Bergabung ke obrolan")
 				queue["free"].append(uid)
 
@@ -166,9 +166,13 @@ def handle(update):
 
 		elif text == '🛠 Menu Bot':
 			keyboard = ReplyKeyboardMarkup(keyboard=[
-				['Info Profile 📌','📝 Info Covid-19'],['🔙 Main Menu']
+				['🎮 Mode Game 🎮'],['Info Profile 📌','📝 Info Covid-19'],['🔙 Main Menu']
 			], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, f"🛠 *Menu Bot*\n\n_Hai Kalian Kami Menyediakan Menu Bot Yang Bikin Kalian Senang , Gabung Group Support Kami Agar Kami Meng Update Fitur Lebih Keren Lagi_\n\n*Group Support :* [SUPPORT](https://t.me/{GROUP_SUPPORT})",parse_mode='MarkDown', reply_markup=keyboard)
+
+                elif text == '🎮 Mode Game 🎮':
+                        keyboard = ReplyKeyboardMarkup(keyboard=[['⚽️', '🏀', '🎳', '🎲']], resize_keyboard=True, on_time_keyboard=True)
+                        bot.sendMessage(uid, f"*Selamat Bermain!*",parse_mode='MarkDown', reply_markup=keyboard)
 
 		elif text == '📝 Info Covid-19':
 			web = requests.get('https://www.worldometers.info/coronavirus/country/indonesia/')
@@ -189,7 +193,7 @@ def handle(update):
 			del queue["occupied"][uid] 
 			if not uid in queue["occupied"]:
 				key = ReplyKeyboardRemove()
-				bot.sendMessage(uid, '🔍 _Mencari pasangan baru kamu.. tunggu sebentar_',parse_mode="MarkDown" ,reply_markup=key)
+				bot.sendMessage(uid, '🔍 _Mencari pasangan baru kamu , tunggu sebentar..._',parse_mode="MarkDown" ,reply_markup=key)
 				print("[SB] " + str(uid) + " Bergabung ke obrolan") 
 				queue["free"].append(uid)
 		
