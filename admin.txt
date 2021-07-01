@@ -1,3 +1,0 @@
-[f'{ADMIN}]
-
-user = id from app.json
