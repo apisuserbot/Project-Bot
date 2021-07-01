@@ -109,10 +109,6 @@ def handle(update):
 					news = ReplyKeyboardRemove()
 					bot.sendMessage(uid, "_[❗️] Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
 		
-                if text == "/help":
-			if not uid in queue["occupied"]:
-				bot.sendMessage(uid, "_👋🏻 Hai Kamu , Disini Menu Bantuan Kami , Jika Anda Memiliki Keluhan Atau Resah Terhadap Orang Orang Tidak Bertanggung Jawab Pada Bot Kami , Bisa Bergabung Pada Group Support Project Kami_\n\n*Salam Admin!*", parse_mode='Markdown', reply_markup=keyboard)
-
 		if text == "/test":
 			if not uid in queue["occupied"]:
 				lolt = ReplyKeyboardMarkup(keyboard=[
