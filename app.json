@@ -25,20 +25,25 @@
       "description": "Isi nama instagram kalian dengan contoh (apis_goodboy)",
       "value": ""
     },
-    "GROUP": {
-      "description": "Isi dengan username group kalian tanpa tanda @ (kalo gak di isi gapapa)",
-      "required":false,
-      "value": "cari_teman_online_group"
+    "GROUP_SUPPORT": {
+      "description": "Bikin Sebuah Group Support Untuk Chat Tanpa Harus Menggunakan @ (kalo gak di rubah gapapa)",
+      "required": false,
+      "value": "project_to_chat"
+    },
+    "GROUP_CHAT": {
+      "description": "Isi dengan username group kalian tanpa tanda @ (kalo gak di rubah gapapa)",
+      "required": false,
+      "value": "Cari_Teman_Online_Group"
     },
     "PROJECT_NAME": {
       "description": "Isi dengan nama project bot kalian",
       "required": false,
-      "value": "Project-Bot"
+      "value": "PROJECT BOT"
     },
     "CHANNEL": {
-      "description": "Isi dengan username channel kalian tanpa tanda @ (kalo gak di isi gapapa)",
+      "description": "Isi dengan username channel kalian tanpa tanda @ (kalo gak di rubah gapapa)",
       "required": false,
-      "value": "quotes_channel_official"
+      "value": "Quotes_Channel_Official"
     }
   }
 }
