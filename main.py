@@ -28,7 +28,7 @@ def saveConfig(data):
 
 if __name__ == '__main__':
 	s = time.time()
-	print(f'[#] Buatan Owner\n[i] Created by {OWNER}\n')
+	print(f'[#] Buatan Owner\n[i] Dibuat Oleh {OWNER}\n')
 	print('[#] mengecek config...')
 	if not os.path.isfile('app.json'):
 		print('[#] memebuat config file...')
@@ -107,7 +107,7 @@ def handle(update):
 			if not uid in queue["occupied"]:
 				if text != "/start" and text != "Pengguna 👤" and text !="Next ▶️" and text != "/refresh" and text != "/help" and text != "/search" and text != "Search 🔍" and text != "🛠 Menu Bot" and text != "🔙 Main Menu" and text != "Info Profile 📌" and text != "📝 Info Covid-19"  and text != "/user":
 					news = ReplyKeyboardRemove()
-					bot.sendMessage(uid, "_[❗️] Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
+					bot.sendMessage(uid, "🤖 *Bot :* _Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
 		
 
 		if text == "/test":
@@ -124,11 +124,11 @@ def handle(update):
 
 		elif text == "/user":
 			if str(uid) in ADMIN :
-				file = open("admin.txt", "r")
+				file = open("app.json", "r")
 				text = "Pengguna : " + str(len(file.readlines())) + " Online 👤"
 				bot.sendMessage(uid, text)
 			else:
-				bot.sendMessage(uid, "👮 Perintah ini hanya untuk admin")
+				bot.sendMessage(uid, "🤖 *Bot :* 👮 _Perintah ini hanya untuk admin_", parse_mode="MarkDown")
 		elif text == 'Info Profile 📌':
 			if str(uid) in ADMIN :
 				name = update["from"]["first_name"]
@@ -159,8 +159,8 @@ def handle(update):
 		elif text == '❌ Exit' or text == '/exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan ' + str(queue["occupied"][uid]))
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna 👤','🛠 Menu Bot']], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, "❌ _Obrolan telah berakhir_", parse_mode='MarkDown', reply_markup=keyboard)
-			bot.sendMessage(queue["occupied"][uid], "😣 _Pasangan kamu keluar dari obrolan_", parse_mode='MarkDown', reply_markup=keyboard)
+			bot.sendMessage(uid, "🤖 *Bot :* ❌ _Obrolan telah berakhir_", parse_mode='MarkDown', reply_markup=keyboard)
+			bot.sendMessage(queue["occupied"][uid], "🤖 *Bot :* ❌ _Pasangan kamu keluar dari obrolan_", parse_mode='MarkDown', reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
@@ -183,8 +183,8 @@ def handle(update):
 		elif text == "Next ▶️" or text == "/next" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍', '🔙 Main Menu']], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, "_🛑 Obrolan telah berakhir!_",parse_mode="MarkDown")
-			bot.sendMessage(queue["occupied"][uid], "_🛑 Obrolan telah berakhir!_",parse_mode="MarkDown", reply_markup=keyboard)
+			bot.sendMessage(uid, "🤖 *Bot :* ❌ _Obrolan telah berakhir!_",parse_mode="MarkDown")
+			bot.sendMessage(queue["occupied"][uid], "🤖 *Bot :* ❌ _Obrolan telah berakhir!_",parse_mode="MarkDown", reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid] 
 			if not uid in queue["occupied"]:
@@ -196,9 +196,9 @@ def handle(update):
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
 			if config[str(uid)]["pics"]:
-				bot.sendMessage(uid, "Pasangan Mengirim Foto")
+				bot.sendMessage(uid, "🤖 *Bot :* Pasangan Mengirim Foto", parse_mode="MarkDown")
 			else:
-				bot.sendMessage(uid, "Pasangan Tidak Bisa Mengirim Foto")
+				bot.sendMessage(uid, "🤖 *Bot :* Pasangan Tidak Bisa Mengirim Foto", parse_mode="MarkDown")
 			saveConfig(config)
 
 		if len(queue["free"]) > 1 and not uid in queue["occupied"]:
