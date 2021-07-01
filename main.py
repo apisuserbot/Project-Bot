@@ -166,13 +166,9 @@ def handle(update):
 
 		elif text == '🛠 Menu Bot':
 			keyboard = ReplyKeyboardMarkup(keyboard=[
-				['🎮 Mode Game 🎮'],['Info Profile 📌','📝 Info Covid-19'],['🔙 Main Menu']
+				['Info Profile 📌','📝 Info Covid-19'],['🔙 Main Menu']
 			], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, f"🛠 *Menu Bot*\n\n_Hai Kalian Kami Menyediakan Menu Bot Yang Bikin Kalian Senang , Gabung Group Support Kami Agar Kami Meng Update Fitur Lebih Keren Lagi_\n\n*Group Support :* [SUPPORT](https://t.me/{GROUP_SUPPORT})",parse_mode='MarkDown', reply_markup=keyboard)
-
-                elif text == '🎮 Mode Game 🎮':
-                        keyboard = ReplyKeyboardMarkup(keyboard=[['⚽️', '🏀', '🎳', '🎲']], resize_keyboard=True, on_time_keyboard=True)
-                        bot.sendMessage(uid, f"*Selamat Bermain!*",parse_mode='MarkDown', reply_markup=keyboard)
 
 		elif text == '📝 Info Covid-19':
 			web = requests.get('https://www.worldometers.info/coronavirus/country/indonesia/')
