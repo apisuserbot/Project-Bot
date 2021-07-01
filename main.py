@@ -168,13 +168,13 @@ def handle(update):
 			keyboard = ReplyKeyboardMarkup(keyboard=[
 				['Info Profile 📌','📝 Info Covid-19'],['🔙 Main Menu']
 			], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, f"🛠 *Menu Bot*\n\n_Hai Kalian Kami Menyediakan Menu Bot Yang Bikin Kalian Senang , Gabung Group Support Kami Agar Kami Meng Update Fitur Lebih Keren Lagi_\n\n*Group Support :* @{GROUP_SUPPORT}",parse_mode='MarkDown', reply_markup=keyboard)
+			bot.sendMessage(uid, f"🛠 *Menu Bot*\n\n_Hai Kalian Kami Menyediakan Menu Bot Yang Bikin Kalian Senang , Gabung Group Support Kami Agar Kami Meng Update Fitur Lebih Keren Lagi_\n\n*Group Support :* [SUPPORT](https://t.me/{GROUP_SUPPORT})",parse_mode='MarkDown', reply_markup=keyboard)
 
 		elif text == '📝 Info Covid-19':
 			web = requests.get('https://www.worldometers.info/coronavirus/country/indonesia/')
 			tampilan = BeautifulSoup(web.content, 'html.parser')
 			dataweb = tampilan.find_all("div", {"class": "maincounter-number"})
-			ouy = "*KASUS VIRUS COVID-19 DI INDONESIA 🇮🇩*\n\n😷 Terpapar Virus : {} jiwa\n😵 Orang Meninggal : {} jiwa\n😇 Orang Sembuh : {} jiwa".format(dataweb[0].span.text,dataweb[1].span.text,dataweb[2].span.text)
+			ouy = "*INFO KASUS VIRUS COVID-19 DI INDONESIA 🇮🇩*\n\n😷 Terpapar Virus : {} jiwa\n😵 Orang Meninggal : {} jiwa\n😇 Orang Sembuh : {} jiwa\n\n_Untuk Kalian Stay Safe Ya , Jaga Kesehatan Masing Masing!_\n\n*Salam Admin!*".format(dataweb[0].span.text,dataweb[1].span.text,dataweb[2].span.text)
 			bot.sendMessage(uid, ouy, parse_mode='MarkDown')
 			
 		elif text == '🔙 Main Menu':
@@ -205,7 +205,7 @@ def handle(update):
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['Next ▶️', '❌ Exit'],[dict(text='Bagikan Nomor Kamu', request_contact=True)]
+					['👋🏻', 'Next ▶️', '❌ Exit'],[dict(text='Bagikan Nomor Kamu', request_contact=True)]
 				],resize_keyboard=True, one_time_keyboard=True)
 				print('[SB] ' + str(uid) + ' Bergabung dengan ' + str(partner))
 				queue["free"].remove(partner)
