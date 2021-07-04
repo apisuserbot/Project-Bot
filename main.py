@@ -114,7 +114,7 @@ def handle(update):
 			if not uid in queue["occupied"]:
 				lolt = ReplyKeyboardMarkup(keyboard=[
                     ['🏀', KeyboardButton(text='⚽️')],
-					[KeyboardButton(text='🎳'), KeyboardButton(text='🎲')]], resize_keyboard=True)
+					[dict(text='Nomor', request_contact=True), KeyboardButton(text='Lokasi', request_location=True)]], resize_keyboard=True)
 				bot.sendMessage(uid, "🤖 *Bot :* Mode Game Aktif", parse_mode="MarkDown", reply_markup=lolt)
 
 		elif text == "Pengguna 👤":
