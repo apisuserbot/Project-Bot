@@ -21,6 +21,10 @@
       "description": "Isi dengan username kalian tanpa tanda @",
       "value": ""
     },
+    "DONASI": {
+      "description": "Isi link donasi kalian tanpa tanpa harus 'https://' Contoh (saweria.co/DonasiDeveloper)",
+      "value": "saweria.co/DonasiDeveloper"
+    },
     "INSTAGRAM": {
       "description": "Isi nama instagram kalian dengan contoh (apis_goodboy)",
       "value": ""
