@@ -205,7 +205,7 @@ def handle(update):
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
-					["👋🏻"],['Next ▶️', '❌ Exit'],[dict(text='Bagikan Nomor', request_contact=True), KeyboardButton(text='Bagikan Lokasi', request_location=True)]
+					["👋🏻"],['Next ▶️', '❌ Exit'],[dict(text='Bagikan Nomor', request_contact=True),[dict(text='Bagikan Lokasi', request_location=True)]
 				],resize_keyboard=True, one_time_keyboard=True)
 				print('[SB] ' + str(uid) + ' Bergabung dengan ' + str(partner))
 				queue["free"].remove(partner)
