@@ -110,12 +110,12 @@ def handle(update):
 					bot.sendMessage(uid, "🤖 *Bot :* _Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
 		
 
-		if text == "/test":
+		if text == "/game":
 			if not uid in queue["occupied"]:
 				lolt = ReplyKeyboardMarkup(keyboard=[
-                    ['Plain text', KeyboardButton(text='Text only')],
-					[dict(text='Nomor', request_contact=True), KeyboardButton(text='Location', request_location=True)]], resize_keyboard=True)
-				bot.sendMessage(uid, "contoh", reply_markup=lolt)
+                    ['🏀', KeyboardButton(text='⚽️')],
+					[KeyboardButton(text='🎳', KeyboardButton(text='🎲')]], resize_keyboard=True)
+				bot.sendMessage(uid, "🤖 *Bot :* Mode Game Aktif", parse_mode="MarkDown", reply_markup=lolt)
 
 		elif text == "Pengguna 👤":
 			file = json.loads(open("app.json", "r").read())
@@ -128,7 +128,7 @@ def handle(update):
 				text = "Pengguna : " + str(len(file.readlines())) + " Online 👤"
 				bot.sendMessage(uid, text)
 			else:
-				bot.sendMessage(uid, "🤖 *Bot :* 👮 _Perintah ini hanya untuk admin_", parse_mode="MarkDown")
+				bot.sendMessage(uid, "🤖 *Bot :* 👮 Perintah ini hanya untuk admin", parse_mode="MarkDown")
 		elif text == 'Info Profile 📌':
 			if str(uid) in ADMIN :
 				name = update["from"]["first_name"]
@@ -159,8 +159,8 @@ def handle(update):
 		elif text == '❌ Exit' or text == '/exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan ' + str(queue["occupied"][uid]))
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 🔍'],['Pengguna 👤','🛠 Menu Bot']], resize_keyboard=True, one_time_keyboard=True)
-			bot.sendMessage(uid, "🤖 *Bot :* ❌ _Obrolan telah berakhir_", parse_mode='MarkDown', reply_markup=keyboard)
-			bot.sendMessage(queue["occupied"][uid], "🤖 *Bot :* ❌ _Pasangan kamu keluar dari obrolan_", parse_mode='MarkDown', reply_markup=keyboard)
+			bot.sendMessage(uid, "🤖 *Bot :* ❌ _Obrolan telah berakhir!_", parse_mode='MarkDown', reply_markup=keyboard)
+			bot.sendMessage(queue["occupied"][uid], "🤖 *Bot :* ❌ _Obrolan telah berakhir!_", parse_mode='MarkDown', reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
@@ -205,14 +205,14 @@ def handle(update):
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
-					["👋🏻"],['Next ▶️', '❌ Exit'],[dict(text='Bagikan Nomor Kamu', request_contact=True)]
+					["👋🏻"],['Next ▶️', '❌ Exit'],[dict(text='Bagikan Nomor', request_contact=True), KeyboardButton(text='Bagikan Lokasi', request_location=True)]
 				],resize_keyboard=True, one_time_keyboard=True)
 				print('[SB] ' + str(uid) + ' Bergabung dengan ' + str(partner))
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
-				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
-				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann , selamat mengobrol..._\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(uid, f'🎉 _Selamat Pasangan kamu telah ditemukan...\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
+				bot.sendMessage(partner, f'🎉 _Selamat Pasangan kamu telah ditemukann...\n\n⚠️ *PERINGATAN UNTUK ANDA* ⚠️\n_Jangan Chat Yang Membahas Tentang Porn, psikopat, LGBT, melecehkan, dan penghinaan agama, jika ada yang seperti itu , silahkan lapor admin aja ya_\n\n*Owner :* _@{OWNER}_\n*Selamat Chat!*',parse_mode='MarkDown', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
 
