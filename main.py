@@ -101,8 +101,8 @@ def handle(update):
 
 		if text == "/start" or text == "/refresh":
 			if not uid in queue["occupied"]:
-				keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="👑 Owner", url=f"https://t.me/{OWNER}"),InlineKeyboardButton(text="📮 Instagram", url=f"https://instagram.com/{INSTAGRAM}"),InlineKeyboardButton(text="💬 Grup Chat", url=f"https://t.me/{GROUP_CHAT}")],[InlineKeyboardButton(text="Donasi Owner", url=f"https://{DONASI}")]])
-				bot.sendMessage(uid, f"👋🏻 Hai Kamu , Selamat Datang Di {PROJECT_NAME} \n\n_🇮🇩 Semoga Kamu Dapat teman atau jodoh\n\n💬 untuk mencari teman obrolan gunakan perintah /search_", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
+				keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="👑 Owner", url=f"https://t.me/{OWNER}"),InlineKeyboardButton(text="📮 Instagram", url=f"https://instagram.com/{INSTAGRAM}"),InlineKeyboardButton(text="💬 Grup Chat", url=f"https://t.me/{GROUP_CHAT}")],[InlineKeyboardButton(text="🎁 Donasi Owner 🎁", url=f"https://{DONASI}")]])
+				bot.sendMessage(uid, f"👋🏻 Hai Kamu , Selamat Datang Di {PROJECT_NAME} \n\n_🇮🇩 Semoga Kamu Dapat teman atau jodoh\n\n💬 untuk mencari teman obrolan gunakan perintah /search_ pada bot\n\n*Selamat Mencari!* 🥳", parse_mode='MarkDown', disable_web_page_preview=True , reply_markup=keyboard)
 		if 'message_id' in update:
 			if not uid in queue["occupied"]:
 				if text != "/start" and text != "Pengguna 👤" and text !="Next ▶️" and text != "/refresh" and text != "/help" and text != "/search" and text != "Search 🔍" and text != "🛠 Menu Bot" and text != "🔙 Main Menu" and text != "Info Profile 📌" and text != "📝 Info Covid-19"  and text != "/user":
