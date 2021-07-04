@@ -21,14 +21,14 @@
       "description": "Isi dengan username kalian tanpa tanda @",
       "value": ""
     },
+    "INSTAGRAM": {
+      "description": "Isi nama instagram kalian dengan contoh (apis_goodboy)",
+      "value": ""
+    },
     "DONASI": {
       "description": "Isi link donasi kalian tanpa tanpa harus 'https://' Contoh (saweria.co/DonasiDeveloper)",
       "required": false,
       "value": "saweria.co/DonasiDeveloper"
-    },
-    "INSTAGRAM": {
-      "description": "Isi nama instagram kalian dengan contoh (apis_goodboy)",
-      "value": ""
     },
     "GROUP_SUPPORT": {
       "description": "Bikin Sebuah Group Support Untuk Chat Tanpa Harus Menggunakan @ (kalo gak di rubah gapapa)",
