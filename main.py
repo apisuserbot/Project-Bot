@@ -110,12 +110,12 @@ def handle(update):
 					bot.sendMessage(uid, "🤖 *Bot :* _Maaf kamu sedang tidak dalam obrolan\nSilahkan Klik /refresh atau /search pada bot_", parse_mode="MarkDown",reply_markup=news, reply_to_message_id=update['message_id'])
 		
 
-		if text == "/game":
+		if text == "/test":
 			if not uid in queue["occupied"]:
 				lolt = ReplyKeyboardMarkup(keyboard=[
-                    ['🏀', KeyboardButton(text='⚽️')],
+                    ['Plain text', KeyboardButton(text='Text only')],
 					[dict(text='Nomor', request_contact=True), KeyboardButton(text='Lokasi', request_location=True)]], resize_keyboard=True)
-				bot.sendMessage(uid, "🤖 *Bot :* Mode Game Aktif", parse_mode="MarkDown", reply_markup=lolt)
+				bot.sendMessage(uid, "🤖 *Bot :* Contoh", parse_mode="MarkDown", reply_markup=lolt)
 
 		elif text == "Pengguna 👤":
 			file = json.loads(open("app.json", "r").read())
