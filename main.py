@@ -147,8 +147,7 @@ def handle(update):
 				bahasa = update["from"]["language_code"]
 				name = update["from"]["first_name"]
 				_id = update["from"]["id"]
-                                username = update["from"]["username"]
-				bot.sendMessage(uid, f"*Info Profile* 📌\n\n*Nama Kamu :* {name}\n*Username Kamu :* @{username}\n*ID Kamu :* `{_id}`\n*Bahasa : {bahasa}*", parse_mode="MarkDown")
+				bot.sendMessage(uid, f"*Info Profile* 📌\n\n*Nama Kamu :* {name}\n*ID Kamu :* `{_id}`\n*Bahasa : {bahasa}*", parse_mode="MarkDown")
 
 		elif text == 'Search 🔍' or text == "/search":
 			if not uid in queue["occupied"]:
