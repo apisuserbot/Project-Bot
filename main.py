@@ -136,7 +136,6 @@ def handle(update):
 				username = update["from"]["username"]
 				tipe = update["chat"]["type"]
 				date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
-                                text = "*Info Profile Owner* 👑 \n"
 				text = "*Nama : " + str(name)+"*" +"\n"
 				text += "*ID Kamu :* " +"`"+ str(_id) +"`"+"\n"
 				text += f"*Username :* @{username}"+ "\n"
@@ -149,7 +148,7 @@ def handle(update):
 				name = update["from"]["first_name"]
 				_id = update["from"]["id"]
                                 username = update["from"]["username"]
-				bot.sendMessage(uid, f"*Info Profile Pengguna* 👤\n\n*Nama Kamu :* {name}\n*Username Kamu :* @{username}\n*ID Kamu :* `{_id}`\n*Bahasa : {bahasa}*", parse_mode="MarkDown")
+				bot.sendMessage(uid, f"*Info Profile* 📌\n\n*Nama Kamu :* {name}\n*Username Kamu :* @{username}\n*ID Kamu :* `{_id}`\n*Bahasa : {bahasa}*", parse_mode="MarkDown")
 
 		elif text == 'Search 🔍' or text == "/search":
 			if not uid in queue["occupied"]:
